@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: route-project-sender
+  redis:
+    host: 192.168.99.100
+server:
+  port: 8081
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/}
+  instance:
+    preferIpAddress: true
+
