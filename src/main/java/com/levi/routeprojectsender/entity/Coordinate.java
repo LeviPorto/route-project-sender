@@ -1,11 +1,13 @@
 package com.levi.routeprojectsender.entity;
 
 import com.levi.routeprojectsender.api.dto.CoordinateDto;
+import lombok.Data;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Data
 public class Coordinate {
 
     private Long id;
@@ -16,46 +18,6 @@ public class Coordinate {
 
     public Coordinate() {
 
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
-
-    public double getLng() {
-        return lng;
-    }
-
-    public void setLng(double lng) {
-        this.lng = lng;
-    }
-
-    public Long getVehicleId() {
-        return vehicleId;
-    }
-
-    public void setVehicleId(Long vehicleId) {
-        this.vehicleId = vehicleId;
-    }
-
-    public Date getInstant() {
-        return instant;
-    }
-
-    public void setInstant(Date instant) {
-        this.instant = instant;
     }
 
     public static Coordinate fromDto(CoordinateDto coordinateDto) throws ParseException {

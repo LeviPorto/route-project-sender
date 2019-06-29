@@ -1,10 +1,11 @@
 package com.levi.routeprojectsender.service;
 
-import com.google.common.net.HttpHeaders;
 import com.levi.routeprojectsender.api.RouteProjectProcessorApi;
 import com.levi.routeprojectsender.api.dto.CoordinateDto;
 import com.levi.routeprojectsender.entity.Coordinate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
@@ -20,6 +21,9 @@ public class CoordinateService {
     private final RouteProjectProcessorApi routeProjectProcessorApi;
     private final KafkaTemplate<String, Coordinate> kafkaTemplate;
 
+    @Value("${spring.kafka.template.default-topic}")
+    public String topicCoordinate;
+
     @Autowired
     public CoordinateService(final RouteProjectProcessorApi routeProjectProcessorApi, final KafkaTemplate<String, Coordinate> kafkaTemplate){
         this.routeProjectProcessorApi = routeProjectProcessorApi;
@@ -33,7 +37,7 @@ public class CoordinateService {
     public CoordinateDto sendUsingKafka(CoordinateDto coordinateDto) throws ParseException {
         Message<Coordinate> message = MessageBuilder
                 .withPayload(Coordinate.fromDto(coordinateDto))
-                .setHeader(KafkaHeaders.TOPIC, "coordinate")
+                .setHeader(KafkaHeaders.TOPIC, topicCoordinate)
                 .build();
         kafkaTemplate.send(message);
         return coordinateDto;

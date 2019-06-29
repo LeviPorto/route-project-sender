@@ -1,8 +1,10 @@
 spring:
   application:
     name: route-project-sender
-  redis:
-    host: 192.168.99.100
+  kafka:
+    bootstrap-servers: "localhost:9092"
+    template:
+      default-topic: "coordinate"
 server:
   port: 8081
 eureka:
