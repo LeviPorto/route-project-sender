@@ -9,14 +9,13 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "route-project")
+@FeignClient(name = "${feign.api.route-project}")
 public interface RouteProjectProcessorApi {
 
     @RequestMapping(method = RequestMethod.POST, value = "/routeProcessor/coordinate")
-    CoordinateDto sendCoordinate(@RequestHeader("Authorization") String token,
-                                 CoordinateDto coordinateDto);
+    CoordinateDto sendCoordinate(@RequestHeader("Authorization") String token, CoordinateDto coordinateDto);
 
     @PostMapping(value = "/auth")
-        TokenDto auth(JwtAuthenticationDto authenticationDto);
+    TokenDto auth(JwtAuthenticationDto authenticationDto);
 
 }

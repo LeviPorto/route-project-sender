@@ -3,10 +3,10 @@ spring:
     name: route-project-sender
   kafka:
     bootstrap-servers: "localhost:9092"
-    template:
-      default-topic: "coordinate"
+    topic:
+      coordinate: "coordinate"
 server:
-  port: 8081
+  port: ${PORT:8081}
 eureka:
   client:
     serviceUrl:

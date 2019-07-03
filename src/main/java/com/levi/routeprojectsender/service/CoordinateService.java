@@ -21,7 +21,7 @@ public class CoordinateService {
     private final RouteProjectProcessorApi routeProjectProcessorApi;
     private final KafkaTemplate<String, Coordinate> kafkaTemplate;
 
-    @Value("${spring.kafka.template.default-topic}")
+    @Value("${spring.kafka.topic.coordinate}")
     public String topicCoordinate;
 
     @Autowired
